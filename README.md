@@ -1,3 +1,3 @@
 # Netline_Sched
 Sched_Codes
-Netline Sched Data Import를 위해서 임시적으로 만든 Repository 입니다.
+Netline Sched Data 수익 Data Interface 관련 Code 입니다.
