@@ -1,0 +1,15 @@
+select
+    local_time_base_std_datev as DEP_Date,
+    iata_carrier_code as OP_CARR,
+    seg_dep_apo_iata_cty_apo_cd as DEP_APO,
+    seg_arv_apo_iata_cty_apo_cd as ARR_APO,
+    flight_sub_suffix_number as OP_FLT_NUM, 
+    cabin_class_code as CBN_CLS,
+    sum(cstr_dmnd_su_apct_value) as PAX_CNT,
+    sum(avg_fare_amt*cstr_dmnd_su_apct_value) as Est_Rev_TTL,
+    capture_datev as Cap_Date
+from  ext_general_pss_rms.xxpss_rms_flight_seg_bkgcls
+WHERE local_time_base_std_datev BETWEEN '20220926' AND '20221002'
+     AND capture_datev = '20220918' 
+group by local_time_base_std_datev,iata_carrier_code,seg_dep_apo_iata_cty_apo_cd, seg_arv_apo_iata_cty_apo_cd,
+flight_sub_suffix_number, cabin_class_code, capture_datev
